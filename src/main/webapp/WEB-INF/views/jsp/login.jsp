@@ -9,7 +9,12 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<title>Spring Security</title>
+	<spring:url value="/resources/core/css/hello.css" var="coreCss" />
+	<spring:url value="/resources/core/css/bootstrap.min.css" var="bootstrapCss" />
+	<link href="${bootstrapCss}" rel="stylesheet" />
+	<link href="${coreCss}" rel="stylesheet" />
+
+	<title>Beer City Login</title>
 
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
