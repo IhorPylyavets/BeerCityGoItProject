@@ -10,8 +10,6 @@
 
 <spring:url value="/resources/core/js/hello.js" var="coreJs" />
 <spring:url value="/resources/core/js/bootstrap.min.js" var="bootstrapJs" />
-<link href="${bootstrapCss}" rel="stylesheet" />
-<link href="${coreCss}" rel="stylesheet" />
 
 <script src="${coreJs}"></script>
 <script src="${bootstrapJs}"></script>
