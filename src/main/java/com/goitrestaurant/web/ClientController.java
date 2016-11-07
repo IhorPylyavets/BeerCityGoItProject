@@ -68,29 +68,42 @@ public class ClientController {
         return "client/show_booking";
     }
 
-    @RequestMapping(value = "client/personnel", method = RequestMethod.GET)
-    public String showAllWaiters(Model model) {
-        List<Employee> waiters =
-                employeeService.getAllEmployeesByPosition(positionService.findByTitle("waiter").get(0));
-        Map<Employee, String> waitersMap = new HashMap<>();
+    @RequestMapping(value = "client/employees", method = RequestMethod.GET)
+    public String showAllEmployees(Model model) {
+        List<Employee> employees = employeeService.getAll();
+        model.addAttribute("positionList", positionService.getAll());
+        model.addAttribute("employeeMap", getEmployeesMap(employees));
 
-        for (Employee employee : waiters) {
+        return "client/showAllEmployees";
+    }
+
+    private Map<Employee, String> getEmployeesMap(List<Employee> employees) {
+        Map<Employee, String> employeeMap = new HashMap<>();
+
+        for (Employee employee : employees) {
             if (employee.getImage() != null) {
                 byte[] encoded = Base64.encodeBase64(employee.getImage());
                 try {
                     String encodedString = new String(encoded, "UTF-8");
-                    waitersMap.put(employee, encodedString);
+                    employeeMap.put(employee, encodedString);
                 } catch (UnsupportedEncodingException e) {
                     throw new RuntimeException("Can't display image!");
                 }
             } else {
-                waitersMap.put(employee, null);
+                employeeMap.put(employee, null);
             }
         }
 
-        model.addAttribute("waitersMap", waitersMap);
+        return employeeMap;
+    }
 
-        return "client/showAllWaiters";
+    @RequestMapping(value = "/client/searchEmployees", method = RequestMethod.GET)
+    public String findPersonnelByPosition(@RequestParam("positionTitle") String positionTitle, Model model) {
+        List<Employee> employeesByPosition = employeeService
+                .getAllEmployeesByPosition(positionService.findByTitle(positionTitle).get(0));
+        model.addAttribute("positionList", positionService.getAll());
+        model.addAttribute("employeeMap", getEmployeesMap(employeesByPosition));
+        return "client/showAllEmployees";
     }
 
     @RequestMapping(value = "client/contacts", method = RequestMethod.GET)

@@ -21,7 +21,15 @@
         </div>p
     </c:if>
 
-    <h1>All Waiters</h1>
+    <h1>Our Employees</h1>
+
+    <form action="/client/searchEmployees${positionTitle}" class="form-inline pull-right" method="get">
+        <div class="form-group">
+            <input type="text" class="form-control" id="positionTitle" name="positionTitle" placeholder="Position title">
+        </div>
+        <spring:url value="/client/searchEmployees${positionTitle}" var="urlSearchEmployees" />
+        <button class="btn btn-primary" onclick="location.href='${urlSearchEmployees}'">Search by Position</button>
+    </form>
 
     <table class="table table-striped">
         <thead>
@@ -30,11 +38,12 @@
             <th>Photo</th>
             <th>LastName</th>
             <th>FirstName</th>
+            <th>Position</th>
         </tr>
         </thead>
 
         <c:set var="idCounter" value="1"/>
-        <c:forEach items="${waitersMap}" var="employeeItem">
+        <c:forEach items="${employeeMap}" var="employeeItem">
             <tr>
                 <td><c:out value="${idCounter}"/></td>
 
@@ -49,6 +58,7 @@
 
                 <td>${employeeItem.key.lastName}</td>
                 <td>${employeeItem.key.firstName}</td>
+                <td>${employeeItem.key.position.positionTitle}</td>
 
             </tr>
             <c:set var="idCounter" value="${idCounter+1}"/>

@@ -11,7 +11,7 @@
 
 <spring:url value="/" var="urlHome" />
 <spring:url value="/client/menu" var="urlMenu" />
-<spring:url value="/client/personnel" var="urlPersonnel" />
+<spring:url value="/client/employees" var="urlEmployees" />
 <spring:url value="/client/booking" var="urlBooking" />
 <spring:url value="/client/contacts" var="urlContacts" />
 <spring:url value="/login" var="urlLogin" />
@@ -33,7 +33,7 @@
 			<a class="navbar-brand" href="${urlBooking}">Booking</a>
 		</div>
 		<div class="navbar-header navbar-right">
-			<a class="navbar-brand" href="${urlPersonnel}">Personnel</a>
+			<a class="navbar-brand" href="${urlEmployees}">Employees</a>
 		</div>
 		<div class="navbar-header navbar-right">
 			<a class="navbar-brand" href="${urlMenu}">Menus</a>

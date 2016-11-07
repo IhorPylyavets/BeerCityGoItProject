@@ -1,4 +1,4 @@
-# BeerCityProject
+# RestaurantProject
 
 Final project of programming courses.
 Sample of restaurant web-system, using:
